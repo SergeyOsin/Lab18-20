@@ -42,10 +42,16 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button6 = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.label5 = new System.Windows.Forms.Label();
+            this.dataGridView3 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -62,7 +68,7 @@
             // 
             this.button1.Location = new System.Drawing.Point(12, 3);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(232, 43);
+            this.button1.Size = new System.Drawing.Size(248, 43);
             this.button1.TabIndex = 1;
             this.button1.Text = "Создать очередь";
             this.button1.UseVisualStyleBackColor = true;
@@ -72,14 +78,14 @@
             // 
             this.button2.Location = new System.Drawing.Point(297, 3);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(279, 43);
+            this.button2.Size = new System.Drawing.Size(303, 43);
             this.button2.TabIndex = 2;
             this.button2.Text = "Очистить очередь";
             this.button2.UseVisualStyleBackColor = true;
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(622, 3);
+            this.button3.Location = new System.Drawing.Point(643, 3);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(262, 43);
             this.button3.TabIndex = 3;
@@ -90,7 +96,7 @@
             // 
             this.button4.Location = new System.Drawing.Point(12, 61);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(191, 44);
+            this.button4.Size = new System.Drawing.Size(214, 44);
             this.button4.TabIndex = 4;
             this.button4.Text = "Вставить новый";
             this.button4.UseVisualStyleBackColor = true;
@@ -98,16 +104,16 @@
             // button5
             // 
             this.button5.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.button5.Location = new System.Drawing.Point(347, 72);
+            this.button5.Location = new System.Drawing.Point(347, 61);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(217, 33);
+            this.button5.Size = new System.Drawing.Size(217, 44);
             this.button5.TabIndex = 5;
             this.button5.Text = "Изменить приоритет";
             this.button5.UseVisualStyleBackColor = false;
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(232, 76);
+            this.numericUpDown1.Location = new System.Drawing.Point(232, 71);
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(93, 26);
             this.numericUpDown1.TabIndex = 6;
@@ -116,7 +122,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Tai Le", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(570, 73);
+            this.label2.Location = new System.Drawing.Point(570, 68);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(30, 29);
             this.label2.TabIndex = 7;
@@ -124,7 +130,7 @@
             // 
             // numericUpDown2
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(606, 76);
+            this.numericUpDown2.Location = new System.Drawing.Point(606, 71);
             this.numericUpDown2.Name = "numericUpDown2";
             this.numericUpDown2.Size = new System.Drawing.Size(84, 26);
             this.numericUpDown2.TabIndex = 8;
@@ -133,7 +139,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Tai Le", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(710, 76);
+            this.label3.Location = new System.Drawing.Point(710, 66);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(41, 29);
             this.label3.TabIndex = 9;
@@ -141,7 +147,7 @@
             // 
             // numericUpDown3
             // 
-            this.numericUpDown3.Location = new System.Drawing.Point(757, 76);
+            this.numericUpDown3.Location = new System.Drawing.Point(757, 69);
             this.numericUpDown3.Name = "numericUpDown3";
             this.numericUpDown3.Size = new System.Drawing.Size(98, 26);
             this.numericUpDown3.TabIndex = 10;
@@ -157,16 +163,16 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 151);
+            this.dataGridView1.Location = new System.Drawing.Point(-1, 151);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(896, 112);
+            this.dataGridView1.Size = new System.Drawing.Size(906, 46);
             this.dataGridView1.TabIndex = 12;
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(694, 399);
+            this.button6.Location = new System.Drawing.Point(715, 517);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(191, 39);
             this.button6.TabIndex = 13;
@@ -174,12 +180,58 @@
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(284, 200);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(305, 25);
+            this.label4.TabIndex = 14;
+            this.label4.Text = "Представление в виде дерева";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Location = new System.Drawing.Point(0, 228);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.RowHeadersWidth = 62;
+            this.dataGridView2.RowTemplate.Height = 28;
+            this.dataGridView2.Size = new System.Drawing.Size(906, 183);
+            this.dataGridView2.TabIndex = 15;
+            this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(342, 414);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(201, 25);
+            this.label5.TabIndex = 16;
+            this.label5.Text = "Результат выборки";
+            // 
+            // dataGridView3
+            // 
+            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView3.Location = new System.Drawing.Point(0, 446);
+            this.dataGridView3.Name = "dataGridView3";
+            this.dataGridView3.RowHeadersWidth = 62;
+            this.dataGridView3.RowTemplate.Height = 28;
+            this.dataGridView3.Size = new System.Drawing.Size(905, 50);
+            this.dataGridView3.TabIndex = 17;
+            // 
             // Осин_23ВП2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.ClientSize = new System.Drawing.Size(897, 450);
+            this.ClientSize = new System.Drawing.Size(906, 565);
+            this.Controls.Add(this.dataGridView3);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.dataGridView2);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel1);
@@ -201,6 +253,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -222,6 +276,10 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.DataGridView dataGridView3;
     }
 }
 
