@@ -33,10 +33,7 @@ namespace WindowsFormsApp3
             dataGridView1.RowCount = 1;
             dataGridView1.ColumnCount = 15;
             for (int i = 0; i < 15; i++)
-            {
-                array[i] = rd.Next(0, 100);
                 dataGridView1.Columns[i].Width = 40;
-            }
             dataGridView2.RowCount = 4;
             dataGridView2.ColumnCount = 15;
             for (int i = 0; i < 15; i++)
@@ -58,14 +55,20 @@ namespace WindowsFormsApp3
 
         private void button1_Click(object sender, EventArgs e)
         {
+
             for (int i = 0; i < dataGridView1.ColumnCount; i++)
             {
+                array[i] = rd.Next(0, 100);
                 if (array[i] == 0)
                     dataGridView1.Rows[0].Cells[i].Value = " ";
                 else dataGridView1.Rows[0].Cells[i].Value = array[i];
             }
         }
-
+        private void deletequeue()
+        {
+            for (int i = 0; i < dataGridView1.ColumnCount; i++)
+                dataGridView1.Rows[0].Cells[i].Value = " ";
+        }
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -74,6 +77,11 @@ namespace WindowsFormsApp3
         private void label4_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            deletequeue();
         }
     }
 }
