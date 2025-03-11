@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -56,17 +57,15 @@ namespace WindowsFormsApp3
         {
             int largest = i;
             // Инициализируем наибольший элемент как корень
-            int l = 2 * i + 1; // левый = 2*i + 1
-            int r = 2 * i + 2; // правый = 2*i + 2
+            int left = 2 * i + 1; // левый = 2*i + 1
+            int right = 2 * i + 2; // правый = 2*i + 2
 
             // Если левый дочерний элемент больше корня
-            if (l < SIZE && arr[l] > arr[largest])
-                largest = l;
-
+            if (left<SIZE && arr[left] > arr[largest])
+                largest = left;
             // Если правый дочерний элемент больше, чем самый большой элемент на данный момент
-            if (r < SIZE && arr[r] > arr[largest])
-                largest = r;
-
+            if (right<SIZE && arr[right] > arr[largest])
+                largest = right;
             // Если самый большой элемент не корень
             if (largest != i)
             {
@@ -84,9 +83,12 @@ namespace WindowsFormsApp3
             int index = 0;
             while (step > 0)
             {
-                for(int pos1=pos;pos1<SIZE;pos1+=step+1)
+                for (int pos1 = pos; pos1 < SIZE; pos1 += step + 1)
                 {
-                    dataGridView2.Rows[number_str].Cells[pos1].Value = array[index++];
+                    if (array1[index] == 0)
+                        dataGridView2.Rows[number_str].Cells[pos1].Value = " ";
+                    else dataGridView2.Rows[number_str].Cells[pos1].Value = array1[index];
+                    index++;
                 }
                 step /= 2;
                 pos /= 2;
@@ -95,21 +97,20 @@ namespace WindowsFormsApp3
         }
         private void button1_Click(object sender, EventArgs e)
         {
-
             for (int i = 0; i < dataGridView1.ColumnCount; i++)
-            {
                 array[i] = rd.Next(0, 100);
-            }
             for (int i = SIZE / 2 - 1; i >= 0; i--)
                 become_to_heap(array, SIZE, i);
             for (int i = 0; i < SIZE; i++)
                 dataGridView1.Rows[0].Cells[i].Value = array[i];
             print(array);
         }
-        private void deletequeue()
+        private void Clear_Tab()
         {
             for (int i = 0; i < dataGridView1.ColumnCount; i++)
                 dataGridView1.Rows[0].Cells[i].Value = " ";
+            int[] array3 = new int[SIZE];
+            print(array3);
         }
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -123,7 +124,7 @@ namespace WindowsFormsApp3
 
         private void button2_Click(object sender, EventArgs e)
         {
-            deletequeue();
+            Clear_Tab();
         }
     }
 }
