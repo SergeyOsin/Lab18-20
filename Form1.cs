@@ -77,6 +77,12 @@ namespace WindowsFormsApp3
         }
         private void print(int[] array1)
         {
+            for (int i = 0; i < SIZE; i++)
+            {
+                if (array1[i] == 0)
+                    dataGridView1.Rows[0].Cells[i].Value = " ";
+                else dataGridView1.Rows[0].Cells[i].Value = array1[i];
+            }
             int number_str = 0;
             int pos = SIZE / 2;
             int step = SIZE;
@@ -95,31 +101,42 @@ namespace WindowsFormsApp3
                 number_str++;
             }
         }
+        private void toDown(int[]array3,int index,int size_array)
+        {
+            while (2 * index <= size_array)
+            {
+                int index_j = 2 * index;
+                if (index_j < size_array && array3[index_j] < array3[index_j + 1]) index_j++;
+                if (array3[index] >= array3[index_j]) break;
+                (array3[index], array3[index_j]) = (array3[index_j], array3[index]);
+                index = index_j;
+            }
+        }
+        private void toUP(int[]array2,int index)
+        {
+            while (index>0 && array2[index/ 2] <= array2[index])
+            {
+                (array2[index], array2[index / 2]) = (array2[index / 2], array2[index]);
+                index /= 2;
+            }
+        }
         private void button1_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < dataGridView1.ColumnCount; i++)
-                array[i] = rd.Next(0, 100);
-            for (int i = SIZE / 2 - 1; i >= 0; i--)
-                become_to_heap(array, SIZE, i);
-            for (int i = 0; i < SIZE; i++)
-                dataGridView1.Rows[0].Cells[i].Value = array[i];
+            for(int i = 0; i < SIZE; i++)
+            {
+                array[i] = rd.Next(10, 99);
+                toUP(array, i);
+            }
             print(array);
         }
         private void Clear_Tab()
         {
+            array = Enumerable.Repeat(0, SIZE).ToArray(); //Обнуление массива А.
             for (int i = 0; i < dataGridView1.ColumnCount; i++)
                 dataGridView1.Rows[0].Cells[i].Value = " ";
-            int[] array3 = new int[SIZE];
-            print(array3);
-        }
-        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
+            print(array);
+            for (int j = 0; j < dataGridView3.ColumnCount; j++)
+                dataGridView3.Rows[0].Cells[j].Value = " ";
         }
 
         private void button2_Click(object sender, EventArgs e)
