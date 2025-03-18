@@ -51,38 +51,12 @@ namespace WindowsFormsApp3
 
         private void button6_Click(object sender, EventArgs e)
         {
-            this.Close();
-        }
-        private void become_to_heap(int[]arr,int SIZE,int i)
-        {
-            int largest = i;
-            // Инициализируем наибольший элемент как корень
-            int left = 2 * i + 1; // левый = 2*i + 1
-            int right = 2 * i + 2; // правый = 2*i + 2
-
-            // Если левый дочерний элемент больше корня
-            if (left<SIZE && arr[left] > arr[largest])
-                largest = left;
-            // Если правый дочерний элемент больше, чем самый большой элемент на данный момент
-            if (right<SIZE && arr[right] > arr[largest])
-                largest = right;
-            // Если самый большой элемент не корень
-            if (largest != i)
-            {
-                (arr[i], arr[largest]) = (arr[largest], arr[i]);
-
-                // Рекурсивно преобразуем в двоичную кучу затронутое поддерево
-                become_to_heap(arr, SIZE, largest);
-            }
+            Application.Exit();
         }
         private void print(int[] array1)
         {
             for (int i = 0; i < SIZE; i++)
-            {
-                if (array1[i] == 0)
-                    dataGridView1.Rows[0].Cells[i].Value = " ";
-                else dataGridView1.Rows[0].Cells[i].Value = array1[i];
-            }
+                dataGridView1.Rows[0].Cells[i].Value = array1[i];
             int number_str = 0;
             int pos = SIZE / 2;
             int step = SIZE;
@@ -90,12 +64,7 @@ namespace WindowsFormsApp3
             while (step > 0)
             {
                 for (int pos1 = pos; pos1 < SIZE; pos1 += step + 1)
-                {
-                    if (array1[index] == 0)
-                        dataGridView2.Rows[number_str].Cells[pos1].Value = " ";
-                    else dataGridView2.Rows[number_str].Cells[pos1].Value = array1[index];
-                    index++;
-                }
+                    dataGridView2.Rows[number_str].Cells[pos1].Value = array1[index++];
                 step /= 2;
                 pos /= 2;
                 number_str++;
@@ -114,31 +83,38 @@ namespace WindowsFormsApp3
         }
         private void toUP(int[]array2,int index)
         {
-            while (index>0 && array2[index/ 2] <= array2[index])
+            while (index>0 && array2[(index-1)/ 2] < array2[index])
             {
-                (array2[index], array2[index / 2]) = (array2[index / 2], array2[index]);
-                index /= 2;
+                (array2[index], array2[(index - 1) / 2]) = (array2[(index - 1) / 2], array2[index]);
+                index = (index - 1) / 2;
             }
+        }
+        private void InsertElement(int index_i)
+        {
+            array[index_i] = rd.Next(10, 99);
+            toUP(array, index_i);
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            for(int i = 0; i < SIZE; i++)
-            {
-                array[i] = rd.Next(10, 99);
-                toUP(array, i);
-            }
+            for (int i = 0; i < SIZE; i++)
+                InsertElement(i);
             print(array);
         }
         private void Clear_Tab()
         {
+            if (array.Count(i=>i==0) == SIZE)
+            {
+                MessageBox.Show("Очередь пуста!", "Ошибка", MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
             array = Enumerable.Repeat(0, SIZE).ToArray(); //Обнуление массива А.
-            for (int i = 0; i < dataGridView1.ColumnCount; i++)
+            for (int i = 0; i < dataGridView1.ColumnCount; i++) {
                 dataGridView1.Rows[0].Cells[i].Value = " ";
-            print(array);
-            for (int j = 0; j < dataGridView3.ColumnCount; j++)
-                dataGridView3.Rows[0].Cells[j].Value = " ";
+                dataGridView3.Rows[0].Cells[i].Value = " ";
+            }
+            for (int i = 0; i < dataGridView1.ColumnCount; i++)
+                for (int j = 0; j < dataGridView2.RowCount; j++)
+                    dataGridView2.Rows[j].Cells[i].Value = " ";
         }
-
         private void button2_Click(object sender, EventArgs e)
         {
             Clear_Tab();
