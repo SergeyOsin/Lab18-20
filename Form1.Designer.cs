@@ -92,6 +92,7 @@
             this.button3.TabIndex = 3;
             this.button3.Text = "Извлечь наибольший";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button4
             // 
@@ -101,6 +102,7 @@
             this.button4.TabIndex = 4;
             this.button4.Text = "Вставить новый";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button5
             // 
@@ -111,10 +113,11 @@
             this.button5.TabIndex = 5;
             this.button5.Text = "Изменить приоритет";
             this.button5.UseVisualStyleBackColor = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(266, 66);
+            this.numericUpDown1.Location = new System.Drawing.Point(266, 62);
             this.numericUpDown1.Maximum = new decimal(new int[] {
             99,
             0,
@@ -138,7 +141,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Tai Le", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(643, 63);
+            this.label2.Location = new System.Drawing.Point(643, 59);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(30, 29);
             this.label2.TabIndex = 7;
@@ -146,7 +149,7 @@
             // 
             // numericUpDown2
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(834, 66);
+            this.numericUpDown2.Location = new System.Drawing.Point(807, 62);
             this.numericUpDown2.Maximum = new decimal(new int[] {
             99,
             0,
@@ -170,7 +173,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Tai Le", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(760, 63);
+            this.label3.Location = new System.Drawing.Point(760, 59);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(41, 29);
             this.label3.TabIndex = 9;
@@ -178,7 +181,7 @@
             // 
             // numericUpDown3
             // 
-            this.numericUpDown3.Location = new System.Drawing.Point(678, 66);
+            this.numericUpDown3.Location = new System.Drawing.Point(678, 62);
             this.numericUpDown3.Maximum = new decimal(new int[] {
             99,
             0,

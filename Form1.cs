@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlTypes;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -104,7 +105,8 @@ namespace WindowsFormsApp3
         {
             if (array.Count(i=>i==0) == SIZE)
             {
-                MessageBox.Show("Очередь пуста!", "Ошибка", MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MesBox("Очередь пуста!");
+                return;
             }
             array = Enumerable.Repeat(0, SIZE).ToArray(); //Обнуление массива А.
             for (int i = 0; i < dataGridView1.ColumnCount; i++) {
@@ -118,6 +120,55 @@ namespace WindowsFormsApp3
         private void button2_Click(object sender, EventArgs e)
         {
             Clear_Tab();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (array.Count(i => i == 0) == 0)
+            {
+                MesBox("Очередь переполнена!");
+                return;
+            }
+            int new_element = Convert.ToInt32(numericUpDown1.Value);
+            int index_zero = Array.IndexOf(array, 0);
+            array[index_zero] = new_element;
+            print(array);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            
+        }
+        private int FindElem(int[] arr_1,int element)
+        {
+            int index = -1;
+            for(int j=0;j<SIZE;j++)
+                if (arr_1[j] == element)
+                {
+                    index = j;
+                    break;
+                }
+            return index;
+        }
+        private void MesBox(string text)
+        {
+            MessageBox.Show(text, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return;
+        }
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (array.Count(i => i == 0)==SIZE)
+            { MesBox("Очередь пустая!"); return; }  
+            int element = Convert.ToInt32(numericUpDown3.Value);
+            int index_element = FindElem(array, element);
+            if (index_element == -1)
+            { MesBox("Элемент отсутствует в массиве!"); return; }
+            int new_element = Convert.ToInt32(numericUpDown2.Value);
+            array[index_element] = new_element;
+            if (element > new_element)
+                toDown(array, index_element, SIZE);
+            else toUP(array, index_element);
+            print(array);
         }
     }
 }
