@@ -16,6 +16,7 @@ namespace WindowsFormsApp3
     {
         const int SIZE = 15;
         int[] array = new int[SIZE];
+        int[] array_max = new int[SIZE+1];
         Random rd = new Random();
         public Осин_23ВП2()
         {
@@ -49,7 +50,7 @@ namespace WindowsFormsApp3
         {
             CreateTable();
         }
-
+        
         private void button6_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -57,7 +58,7 @@ namespace WindowsFormsApp3
         private void print(int[] array1)
         {
             for (int i = 0; i < SIZE; i++)
-                dataGridView1.Rows[0].Cells[i].Value = array1[i];
+                dataGridView1.Rows[0].Cells[i].Value = (array1[i] == 0) ? " " : array[i].ToString();
             int number_str = 0;
             int pos = SIZE / 2;
             int step = SIZE;
@@ -65,7 +66,7 @@ namespace WindowsFormsApp3
             while (step > 0)
             {
                 for (int pos1 = pos; pos1 < SIZE; pos1 += step + 1)
-                    dataGridView2.Rows[number_str].Cells[pos1].Value = array1[index++];
+                    dataGridView2.Rows[number_str].Cells[pos1].Value = dataGridView1.Rows[0].Cells[index++].Value;
                 step /= 2;
                 pos /= 2;
                 number_str++;
@@ -73,9 +74,9 @@ namespace WindowsFormsApp3
         }
         private void toDown(int[]array3,int index,int size_array)
         {
-            while (2 * index <= size_array)
+            while (2 * index+1 < size_array)
             {
-                int index_j = 2 * index;
+                int index_j = 2 * index + 1;
                 if (index_j < size_array && array3[index_j] < array3[index_j + 1]) index_j++;
                 if (array3[index] >= array3[index_j]) break;
                 (array3[index], array3[index_j]) = (array3[index_j], array3[index]);
@@ -109,6 +110,7 @@ namespace WindowsFormsApp3
                 return;
             }
             array = Enumerable.Repeat(0, SIZE).ToArray(); //Обнуление массива А.
+            array_max = Enumerable.Repeat(0, SIZE).ToArray(); 
             for (int i = 0; i < dataGridView1.ColumnCount; i++) {
                 dataGridView1.Rows[0].Cells[i].Value = " ";
                 dataGridView3.Rows[0].Cells[i].Value = " ";
@@ -116,6 +118,7 @@ namespace WindowsFormsApp3
             for (int i = 0; i < dataGridView1.ColumnCount; i++)
                 for (int j = 0; j < dataGridView2.RowCount; j++)
                     dataGridView2.Rows[j].Cells[i].Value = " ";
+            
         }
         private void button2_Click(object sender, EventArgs e)
         {
@@ -132,23 +135,32 @@ namespace WindowsFormsApp3
             int new_element = Convert.ToInt32(numericUpDown1.Value);
             int index_zero = Array.IndexOf(array, 0);
             array[index_zero] = new_element;
+            toUP(array, index_zero);
             print(array);
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            
-        }
-        private int FindElem(int[] arr_1,int element)
-        {
-            int index = -1;
-            for(int j=0;j<SIZE;j++)
-                if (arr_1[j] == element)
-                {
-                    index = j;
-                    break;
-                }
-            return index;
+            if (array.Count(i => i == 0) == SIZE)
+            {
+                MesBox("Очередь пуста!");
+                return;
+            }
+            int ind_empty;
+            for (ind_empty = 0; array_max[ind_empty] != 0; ind_empty++) ;
+            if (ind_empty == SIZE)
+            {
+                MesBox("Результат выборки переполнен!");
+                return;
+            }
+            array_max[ind_empty] = array[0];
+            dataGridView3.Rows[0].Cells[ind_empty].Value = array[0];
+            int index_zero = Array.IndexOf(array, 0);
+            index_zero = (index_zero < 0) ? SIZE - 1 : index_zero - 1;
+            array[0] = array[index_zero];
+            array[index_zero] = 0;
+            toDown(array, 0, SIZE);
+            print(array);
         }
         private void MesBox(string text)
         {
@@ -158,15 +170,20 @@ namespace WindowsFormsApp3
         private void button5_Click(object sender, EventArgs e)
         {
             if (array.Count(i => i == 0)==SIZE)
-            { MesBox("Очередь пустая!"); return; }  
+            {
+                MesBox("Очередь пустая!");
+                return;
+            }  
             int element = Convert.ToInt32(numericUpDown3.Value);
-            int index_element = FindElem(array, element);
+            int index_element = Array.IndexOf(array, element);
             if (index_element == -1)
-            { MesBox("Элемент отсутствует в массиве!"); return; }
+            {
+                MesBox("Элемент отсутствует в массиве!");
+                return; 
+            }
             int new_element = Convert.ToInt32(numericUpDown2.Value);
             array[index_element] = new_element;
-            if (element > new_element)
-                toDown(array, index_element, SIZE);
+            if (element > new_element) toDown(array, index_element, SIZE);
             else toUP(array, index_element);
             print(array);
         }
