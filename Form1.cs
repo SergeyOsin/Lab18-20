@@ -17,6 +17,8 @@ namespace WindowsFormsApp3
         const int SIZE = 15;
         int[] array = new int[SIZE];
         int[] array_max = new int[SIZE+1];
+        int currentSize = 0;
+        int size_max = 0;
         Random rd = new Random();
         public Осин_23ВП2()
         {
@@ -100,16 +102,18 @@ namespace WindowsFormsApp3
         {
             for (int i = 0; i < SIZE; i++)
                 InsertElement(i);
+            currentSize = 15;
             print(array);
         }
         private void Clear_Tab()
         {
-            if (array.Count(i=>i==0) == SIZE)
+            if (currentSize==0)
             {
                 MesBox("Очередь пуста!");
                 return;
             }
             array = Enumerable.Repeat(0, SIZE).ToArray(); //Обнуление массива А.
+            currentSize = 0;
             array_max = Enumerable.Repeat(0, SIZE).ToArray(); 
             for (int i = 0; i < dataGridView1.ColumnCount; i++) {
                 dataGridView1.Rows[0].Cells[i].Value = " ";
@@ -118,6 +122,7 @@ namespace WindowsFormsApp3
             for (int i = 0; i < dataGridView1.ColumnCount; i++)
                 for (int j = 0; j < dataGridView2.RowCount; j++)
                     dataGridView2.Rows[j].Cells[i].Value = " ";
+            size_max = 0;
             
         }
         private void button2_Click(object sender, EventArgs e)
@@ -127,39 +132,37 @@ namespace WindowsFormsApp3
 
         private void button4_Click(object sender, EventArgs e)
         {
-            if (array.Count(i => i == 0) == 0)
+            if (currentSize==15)
             {
                 MesBox("Очередь переполнена!");
                 return;
             }
             int new_element = Convert.ToInt32(numericUpDown1.Value);
-            int index_zero = Array.IndexOf(array, 0);
-            array[index_zero] = new_element;
-            toUP(array, index_zero);
+            array[currentSize] = new_element;
+            toUP(array, currentSize);
+            currentSize++;
             print(array);
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if (array.Count(i => i == 0) == SIZE)
+            if (currentSize==0)
             {
                 MesBox("Очередь пуста!");
                 return;
             }
-            int ind_empty;
-            for (ind_empty = 0; array_max[ind_empty] != 0; ind_empty++) ;
-            if (ind_empty == SIZE)
+            if (size_max == SIZE)
             {
                 MesBox("Результат выборки переполнен!");
                 return;
             }
-            array_max[ind_empty] = array[0];
-            dataGridView3.Rows[0].Cells[ind_empty].Value = array[0];
-            int index_zero = Array.IndexOf(array, 0);
-            index_zero = (index_zero < 0) ? SIZE - 1 : index_zero - 1;
-            array[0] = array[index_zero];
-            array[index_zero] = 0;
+            array_max[size_max] = array[0];
+            dataGridView3.Rows[0].Cells[size_max].Value = array[0];
+            size_max++;
+            array[0] = array[currentSize-1];
+            array[currentSize-1] = 0;
             toDown(array, 0, SIZE);
+            currentSize--;
             print(array);
         }
         private void MesBox(string text)
@@ -169,7 +172,7 @@ namespace WindowsFormsApp3
         }
         private void button5_Click(object sender, EventArgs e)
         {
-            if (array.Count(i => i == 0)==SIZE)
+            if (currentSize==0)
             {
                 MesBox("Очередь пустая!");
                 return;
